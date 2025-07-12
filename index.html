@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyWings - Premium Flight Booking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
+        <div class="airplane airplane1">✈️</div>
+        <div class="airplane airplane2">🛫</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <span class="logo-icon">✈️</span>
+                    <span class="logo-text">SkyWings</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#login" class="nav-link login-btn">Login</a></li>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#book" class="nav-link">Book</a></li>
+                    <li><a href="#deals" class="nav-link">Deals</a></li>
+                    <li><a href="#support" class="nav-link">Support</a></li>
+                    
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">Discover Your Next Adventure</h1>
+                    <p class="hero-subtitle">Book flights to amazing destinations worldwide with exclusive deals</p>
+                    
+                    <!-- Quick Booking Form -->
+                    <div class="booking-form-container">
+                        <form class="booking-form" id="quickBookingForm">
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <span class="input-icon">🛫</span>
+                                    <input type="text" id="quickFrom" placeholder="From" required>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-icon">🛬</span>
+                                    <input type="text" id="quickTo" placeholder="To" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <span class="input-icon">📅</span>
+                                    <input type="date" id="quickDeparture" required>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-icon">👥</span>
+                                    <select id="quickPassengers" required>
+                                        <option value="">Passengers</option>
+                                        <option value="1">1 Passenger</option>
+                                        <option value="2">2 Passengers</option>
+                                        <option value="3">3 Passengers</option>
+                                        <option value="4">4+ Passengers</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="search-btn">
+                                <span>Quick Search</span>
+                                <span class="btn-icon">🔍</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="features-section">
+                <div class="container">
+                    <h2 class="section-title">Why Choose SkyWings?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">💰</div>
+                            <h3>Best Prices</h3>
+                            <p>Compare prices from hundreds of airlines to find the best deals</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🛡️</div>
+                            <h3>Secure Booking</h3>
+                            <p>Your personal and payment information is always protected</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📞</div>
+                            <h3>24/7 Support</h3>
+                            <p>Our customer service team is available around the clock</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Instant Booking</h3>
+                            <p>Book your flights instantly with immediate confirmation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Page -->
+        <section id="book" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <h1 class="page-title">Book Your Flight</h1>
+                    <p class="page-subtitle">Find and book the perfect flight for your journey</p>
+                    
+                    <div class="booking-container">
+                        <div class="booking-tabs">
+                            <button class="tab-btn active" data-tab="roundtrip">Round Trip</button>
+                            <button class="tab-btn" data-tab="oneway">One Way</button>
+                            <button class="tab-btn" data-tab="multicity">Multi-City</button>
+                        </div>
+
+                        <form class="detailed-booking-form" id="detailedBookingForm">
+                            <div class="form-section">
+                                <h3>Flight Details</h3>
+                                <div class="form-grid">
+                                    <div class="input-group">
+                                        <label>From</label>
+                                        <span class="input-icon">🛫</span>
+                                        <input type="text" id="bookFrom" placeholder="Departure city" required>
+                                        <div class="suggestions" id="fromSuggestions"></div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>To</label>
+                                        <span class="input-icon">🛬</span>
+                                        <input type="text" id="bookTo" placeholder="Destination city" required>
+                                        <div class="suggestions" id="toSuggestions"></div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Departure Date</label>
+                                        <span class="input-icon">📅</span>
+                                        <input type="date" id="bookDeparture" required>
+                                    </div>
+                                    <div class="input-group roundtrip-only">
+                                        <label>Return Date</label>
+                                        <span class="input-icon">📅</span>
+                                        <input type="date" id="bookReturn">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Passengers & Class</h3>
+                                <div class="form-grid">
+                                    <div class="input-group">
+                                        <label>Adults</label>
+                                        <span class="input-icon">👤</span>
+                                        <select id="bookAdults" required>
+                                            <option value="1">1 Adult</option>
+                                            <option value="2">2 Adults</option>
+                                            <option value="3">3 Adults</option>
+                                            <option value="4">4 Adults</option>
+                                            <option value="5">5+ Adults</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Children (2-11)</label>
+                                        <span class="input-icon">👶</span>
+                                        <select id="bookChildren">
+                                            <option value="0">0 Children</option>
+                                            <option value="1">1 Child</option>
+                                            <option value="2">2 Children</option>
+                                            <option value="3">3 Children</option>
+                                            <option value="4">4+ Children</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Infants (0-2)</label>
+                                        <span class="input-icon">🍼</span>
+                                        <select id="bookInfants">
+                                            <option value="0">0 Infants</option>
+                                            <option value="1">1 Infant</option>
+                                            <option value="2">2 Infants</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Class</label>
+                                        <span class="input-icon">💺</span>
+                                        <select id="bookClass" required>
+                                            <option value="economy">Economy</option>
+                                            <option value="premium">Premium Economy</option>
+                                            <option value="business">Business</option>
+                                            <option value="first">First Class</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Preferences</h3>
+                                <div class="preferences-grid">
+                                    <label class="checkbox-group">
+                                        <input type="checkbox" id="directFlights">
+                                        <span class="checkmark"></span>
+                                        Direct flights only
+                                    </label>
+                                    <label class="checkbox-group">
+                                        <input type="checkbox" id="flexibleDates">
+                                        <span class="checkmark"></span>
+                                        Flexible dates (±3 days)
+                                    </label>
+                                    <label class="checkbox-group">
+                                        <input type="checkbox" id="nearbyAirports">
+                                        <span class="checkmark"></span>
+                                        Include nearby airports
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="search-flights-btn">
+                                <span>Search Flights</span>
+                                <span class="btn-icon">✈️</span>
+                            </button>
+                        </form>
+
+                        <!-- Search Results (Mock) -->
+                        <div class="search-results" id="searchResults" style="display: none;">
+                            <h3>Available Flights</h3>
+                            <div class="flight-results">
+                                <!-- Flight results will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deals Page -->
+        <section id="deals" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <h1 class="page-title">Exclusive Flight Deals</h1>
+                    <p class="page-subtitle">Discover amazing offers and save on your next trip</p>
+                    
+                    <div class="deals-filter">
+                        <button class="filter-btn active" data-filter="all">All Deals</button>
+                        <button class="filter-btn" data-filter="domestic">Domestic</button>
+                        <button class="filter-btn" data-filter="international">International</button>
+                        <button class="filter-btn" data-filter="business">Business Class</button>
+                    </div>
+
+                    <div class="deals-grid">
+                        <div class="deal-card" data-category="international">
+                            <div class="card-front">
+                                <img src="https://images.pexels.com/photos/161901/paris-sunset-france-monument-161901.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Paris">
+                                <div class="deal-badge">50% OFF</div>
+                                <div class="card-content">
+                                    <h3>Paris, France</h3>
+                                    <p class="price">From ₹29999</p>
+                                    <p class="original-price">₹59999</p>
+                                    <p class="deal-type">Round Trip</p>
+                                    <p class="deal-validity">Valid until Dec 31, 2025</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Paris Adventure</h3>
+                                <p>Explore the City of Light with our exclusive package</p>
+                                <ul>
+                                    <li>✈️ Round-trip flights</li>
+                                    <li>🏨 3 nights hotel included</li>
+                                    <li>🎫 City tour package</li>
+                                    <li>🍽️ Breakfast included</li>
+                                </ul>
+                                <button class="book-deal-btn">Book Now</button>
+                            </div>
+                        </div>
+
+                        <div class="deal-card" data-category="international">
+                            <div class="card-front">
+                                <img src="https://images.pexels.com/photos/1151203/pexels-photo-1151203.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Tokyo">
+                                <div class="deal-badge">40% OFF</div>
+                                <div class="card-content">
+                                    <h3>Tokyo, Japan</h3>
+                                    <p class="price">From ₹ 59999</p>
+                                    <p class="original-price">₹ 99999</p>
+                                    <p class="deal-type">Round Trip</p>
+                                    <p class="deal-validity">Valid until Jan 15, 2026</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Tokyo Experience</h3>
+                                <p>Discover the perfect blend of tradition and modernity</p>
+                                <ul>
+                                    <li>✈️ Direct flights</li>
+                                    <li>🏯 Cultural tours</li>
+                                    <li>🍣 Food experiences</li>
+                                    <li>🚄 JR Pass included</li>
+                                </ul>
+                                <button class="book-deal-btn">Book Now</button>
+                            </div>
+                        </div>
+
+                        <div class="deal-card" data-category="domestic">
+                            <div class="card-front">
+                                <img src="https://images.pexels.com/photos/378570/pexels-photo-378570.jpeg?auto=compress&cs=tinysrgb&w=400" alt="New York">
+                                <div class="deal-badge">30% OFF</div>
+                                <div class="card-content">
+                                    <h3>New York, USA</h3>
+                                    <p class="price">From ₹19999 </p>
+                                    <p class="original-price">₹28599</p>
+                                    <p class="deal-type">One Way</p>
+                                    <p class="deal-validity">Valid until Feb 28, 2026</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Big Apple Special</h3>
+                                <p>Experience the city that never sleeps</p>
+                                <ul>
+                                    <li>✈️ Premium flights</li>
+                                    <li>🏙️ Manhattan hotel</li>
+                                    <li>🎭 Broadway show tickets</li>
+                                    <li>🗽 Statue of Liberty tour</li>
+                                </ul>
+                                <button class="book-deal-btn">Book Now</button>
+                            </div>
+                        </div>
+
+                        <div class="deal-card" data-category="international">
+                            <div class="card-front">
+                                <img src="https://images.pexels.com/photos/774815/pexels-photo-774815.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bali">
+                                <div class="deal-badge">45% OFF</div>
+                                <div class="card-content">
+                                    <h3>Bali, Indonesia</h3>
+                                    <p class="price">From ₹44999</p>
+                                    <p class="original-price">₹81599</p>
+                                    <p class="deal-type">Round Trip</p>
+                                    <p class="deal-validity">Valid until Mar 31, 2026</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Tropical Paradise</h3>
+                                <p>Relax in the beautiful island of Bali</p>
+                                <ul>
+                                    <li>✈️ Premium economy</li>
+                                    <li>🏖️ Beach resort stay</li>
+                                    <li>🧘 Wellness package</li>
+                                    <li>🌺 Cultural experiences</li>
+                                </ul>
+                                <button class="book-deal-btn">Book Now</button>
+                            </div>
+                        </div>
+
+                        <div class="deal-card" data-category="business">
+                            <div class="card-front">
+                                <img src="https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=400" alt="London">
+                                <div class="deal-badge">BUSINESS</div>
+                                <div class="card-content">
+                                    <h3>London, UK</h3>
+                                    <p class="price">From ₹12999</p>
+                                    <p class="original-price">₹21999</p>
+                                    <p class="deal-type">Business Class</p>
+                                    <p class="deal-validity">Valid until Apr 30, 2026</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>London Business</h3>
+                                <p>Travel in luxury to the heart of England</p>
+                                <ul>
+                                    <li>✈️ Business class seats</li>
+                                    <li>🏨 5-star hotel</li>
+                                    <li>🍾 Airport lounge access</li>
+                                    <li>🚗 Private transfers</li>
+                                </ul>
+                                <button class="book-deal-btn">Book Now</button>
+                            </div>
+                        </div>
+
+                        <div class="deal-card" data-category="domestic">
+                            <div class="card-front">
+                                <img src="https://images.pexels.com/photos/1010657/pexels-photo-1010657.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Miami">
+                                <div class="deal-badge">35% OFF</div>
+                                <div class="card-content">
+                                    <h3>Miami, USA</h3>
+                                    <p class="price">From ₹17999</p>
+                                    <p class="original-price">₹27599</p>
+                                    <p class="deal-type">Round Trip</p>
+                                    <p class="deal-validity">Valid until May 15, 2026</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Miami Beach</h3>
+                                <p>Enjoy the sun, sand, and vibrant nightlife</p>
+                                <ul>
+                                    <li>✈️ Direct flights</li>
+                                    <li>🏖️ Beach hotel</li>
+                                    <li>🌴 South Beach access</li>
+                                    <li>🎉 Nightlife tours</li>
+                                </ul>
+                                <button class="book-deal-btn">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Page -->
+        <section id="support" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <h1 class="page-title">Customer Support</h1>
+                    <p class="page-subtitle">We're here to help you 24/7</p>
+                    
+                    <div class="support-container">
+                        <div class="support-options">
+                            <div class="support-card">
+                                <div class="support-icon">📞</div>
+                                <h3>Call Us</h3>
+                                <p>Speak directly with our support team</p>
+                                <div class="contact-info">
+                                    <p><strong>US/Canada:</strong> +1 (555) 123-4567</p>
+                                    <p><strong>International:</strong> +1 (555) 987-6543</p>
+                                    <p><strong>Hours:</strong> 24/7</p>
+                                </div>
+                                <button class="contact-btn">Call Now</button>
+                            </div>
+
+                            <div class="support-card">
+                                <div class="support-icon">💬</div>
+                                <h3>Live Chat</h3>
+                                <p>Get instant help from our chat agents</p>
+                                <div class="contact-info">
+                                    <p><strong>Response time:</strong> Under 2 minutes</p>
+                                    <p><strong>Available:</strong> 24/7</p>
+                                    <p><strong>Languages:</strong> English, Spanish, French</p>
+                                </div>
+                                <button class="contact-btn" id="startChat">Start Chat</button>
+                            </div>
+
+                            <div class="support-card">
+                                <div class="support-icon">📧</div>
+                                <h3>Email Support</h3>
+                                <p>Send us a detailed message</p>
+                                <div class="contact-info">
+                                    <p><strong>Email:</strong> support@skywings.com</p>
+                                    <p><strong>Response time:</strong> Within 4 hours</p>
+                                    <p><strong>Available:</strong> 24/7</p>
+                                </div>
+                                <button class="contact-btn">Send Email</button>
+                            </div>
+                        </div>
+
+                        <div class="faq-section">
+                            <h2>Frequently Asked Questions</h2>
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>How can I cancel or change my booking?</h4>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>You can cancel or change your booking by logging into your account and accessing "My Bookings". Changes are subject to airline policies and may incur fees. For assistance, contact our support team.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>What documents do I need for international travel?</h4>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>For international travel, you'll need a valid passport and may require a visa depending on your destination. Check visa requirements at least 6 weeks before travel. Some countries also require proof of vaccination.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>How early should I arrive at the airport?</h4>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>We recommend arriving 2 hours early for domestic flights and 3 hours early for international flights. During peak travel times or at busy airports, consider arriving even earlier.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>What is your baggage policy?</h4>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>Baggage policies vary by airline and ticket type. Most economy tickets include one carry-on bag and one personal item. Checked baggage fees and weight limits depend on your specific airline and route.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>Can I select my seat in advance?</h4>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>Yes, seat selection is available during booking or afterward through "Manage Booking". Some seats may have additional fees. Premium seats and exit rows typically require extra payment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-section">
+                            <h2>Send us a Message</h2>
+                            <form class="contact-form" id="contactForm">
+                                <div class="form-row">
+                                    <div class="input-group">
+                                        <label>Full Name</label>
+                                        <input type="text" id="contactName" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Email Address</label>
+                                        <input type="email" id="contactEmail" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="input-group">
+                                        <label>Booking Reference (Optional)</label>
+                                        <input type="text" id="bookingRef" placeholder="e.g., SW123456">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Subject</label>
+                                        <select id="contactSubject" required>
+                                            <option value="">Select a topic</option>
+                                            <option value="booking">Booking Issue</option>
+                                            <option value="cancellation">Cancellation</option>
+                                            <option value="refund">Refund Request</option>
+                                            <option value="technical">Technical Issue</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Message</label>
+                                    <textarea id="contactMessage" rows="5" placeholder="Please describe your issue or question in detail..." required></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Page -->
+        <section id="login" class="page">
+            <div class="page-content">
+                <div class="login-container">
+                    <div class="login-card">
+                        <div class="login-header">
+                            <div class="login-logo">
+                                <span class="logo-icon">✈️</span>
+                                <span class="logo-text">SkyWings</span>
+                            </div>
+                            <h2>Welcome Back</h2>
+                            <p>Sign in to your account to continue</p>
+                        </div>
+
+                        <div class="auth-tabs">
+                            <button class="auth-tab active" data-tab="signin">Sign In</button>
+                            <button class="auth-tab" data-tab="signup">Sign Up</button>
+                        </div>
+
+                        <!-- Sign In Form -->
+                        <form class="auth-form" id="signinForm">
+                            <div class="input-group">
+                                <label>Email Address</label>
+                                <span class="input-icon">📧</span>
+                                <input type="email" id="signinEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Password</label>
+                                <span class="input-icon">🔒</span>
+                                <input type="password" id="signinPassword" placeholder="Enter your password" required>
+                                <button type="button" class="password-toggle" id="signinPasswordToggle">👁️</button>
+                            </div>
+                            <div class="form-options">
+                                <label class="checkbox-group">
+                                    <input type="checkbox" id="rememberMe">
+                                    <span class="checkmark"></span>
+                                    Remember me
+                                </label>
+                                <a href="#" class="forgot-password">Forgot password?</a>
+                            </div>
+                            <button type="submit" class="auth-btn">Sign In</button>
+                        </form>
+
+                        <!-- Sign Up Form -->
+                        <form class="auth-form" id="signupForm" style="display: none;">
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label>First Name</label>
+                                    <span class="input-icon">👤</span>
+                                    <input type="text" id="signupFirstName" placeholder="First name" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>Last Name</label>
+                                    <span class="input-icon">👤</span>
+                                    <input type="text" id="signupLastName" placeholder="Last name" required>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Email Address</label>
+                                <span class="input-icon">📧</span>
+                                <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Phone Number</label>
+                                <span class="input-icon">📞</span>
+                                <input type="tel" id="signupPhone" placeholder="Enter your phone number" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Password</label>
+                                <span class="input-icon">🔒</span>
+                                <input type="password" id="signupPassword" placeholder="Create a password" required>
+                                <button type="button" class="password-toggle" id="signupPasswordToggle">👁️</button>
+                            </div>
+                            <div class="input-group">
+                                <label>Confirm Password</label>
+                                <span class="input-icon">🔒</span>
+                                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                            </div>
+                            <div class="form-options">
+                                <label class="checkbox-group">
+                                    <input type="checkbox" id="agreeTerms" required>
+                                    <span class="checkmark"></span>
+                                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                                </label>
+                            </div>
+                            <button type="submit" class="auth-btn">Create Account</button>
+                        </form>
+
+                        <div class="social-login">
+                            <div class="divider">
+                                <span>Or continue with</span>
+                            </div>
+                            <div class="social-buttons">
+                                <button class="social-btn google">
+                                    <span class="social-icon">🔍</span>
+                                    Google
+                                </button>
+                                <button class="social-btn facebook">
+                                    <span class="social-icon">📘</span>
+                                    Facebook
+                                </button>
+                                <button class="social-btn apple">
+                                    <span class="social-icon">🍎</span>
+                                    Apple
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Testimonials Section (Shared across pages) -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Our Travelers Say</h2>
+            <div class="testimonials-slider" id="testimonialsSlider">
+                <div class="testimonial active">
+                    <div class="testimonial-content">
+                        <div class="quote">"</div>
+                        <p>SkyWings made my dream vacation to Paris possible! The booking process was seamless and the customer service was exceptional.</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Sarah Johnson">
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Travel Enthusiast</p>
+                            </div>
+                        </div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="quote">"</div>
+                        <p>I've used many booking platforms, but SkyWings offers the best deals and user experience. Highly recommended!</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Mike Chen">
+                            <div class="author-info">
+                                <h4>Mike Chen</h4>
+                                <p>Business Traveler</p>
+                            </div>
+                        </div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="quote">"</div>
+                        <p>The exclusive deals and premium service make SkyWings my go-to platform for all my travel needs.</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.pexels.com/photos/1542085/pexels-photo-1542085.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Emma Wilson">
+                            <div class="author-info">
+                                <h4>Emma Wilson</h4>
+                                <p>Adventure Seeker</p>
+                            </div>
+                        </div>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn" onclick="previousTestimonial()">‹</button>
+                <button class="slider-btn" onclick="nextTestimonial()">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">✈️</span>
+                        <span class="logo-text">SkyWings</span>
+                    </div>
+                    <p>Your trusted partner for unforgettable travel experiences worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">💼</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#book">Book Flights</a></li>
+                        <li><a href="#deals">Special Deals</a></li>
+                        <li><a href="#support">Customer Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📧 info@skywings.com</p>
+                    <p>📞 +1 (555) 123-4567</p>
+                    <p>📍 123 Aviation Street, Sky City</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for exclusive deals and travel tips</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SkyWings. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
